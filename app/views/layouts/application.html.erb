@@ -16,7 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 
-<center>
   <body style="background-color: lightblue;">
 
     
@@ -26,20 +25,12 @@
   <a class="navbar-brand"> <%= link_to "Team", team_path %> </a>
   <a class="navbar-brand"> <%= link_to "Contact", contact_path %> </a>
   <% if session[:user_id] == nil %>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Connexion/Inscription
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item"> <%= link_to "Inscription", new_user_path %></a>
-        <a class="dropdown-item"> <%= link_to "Connexion", new_session_path %></a>
-      </div>
-    </div>
+    <a class="navbar-brand"> <%= link_to "Inscription", new_user_path %> </a>
+    <a class="navbar-brand"> <%= link_to "Connexion", new_session_path %> </a>
   <% else %>
-    <button type="button" class="btn btn-outline-secondary"><%= link_to "Deconnexion", session_path(session[:user_id]), method: :delete %></button>
+    <a class="navbar-brand"> <%= link_to "Déconnexion", session_path(session[:user_id]), method: :delete %> </a>
   <% end %>
   </nav> 
     <%= yield %>
   </body>
-</center>
 </html>
