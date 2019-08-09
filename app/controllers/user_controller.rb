@@ -28,6 +28,7 @@ class UserController < ApplicationController
       city: @city
       )
       if @user.save
+        log_in(@user)
         redirect_to root_path, :alert => "success_user_create"
       else 
         render :new
