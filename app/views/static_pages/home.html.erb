@@ -1,0 +1,22 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+<h2>Bienvenue sur The Gossip Project!</h2>
+<br/>
+<%= image_tag('rumors.jpg', width: '50%', height: '50%') %><br>
+<br><h3>Voici les potins ! <br>🙈 🙉 🙊‍</h3><br>
+</center>
+<% Gossip.all.each_with_index do |gossip, index| %>
+<center>
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title"><b>"<%= gossip.title %>"</b></h5>
+    <p class="card-text"><b>Auteur :</b> <%= gossip.user.first_name %></br> </p>
+    <a href="/gossip/<%= index + 1 %>/" class="card-link">Lire le gossip</a>
+  </div>
+</div>
+<br>
+</center>
+<% end %>

@@ -1,0 +1,19 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+
+<%= form_tag url_for(action: "update"), method: "patch" do %>
+<div class="card" style="width: 25rem; padding: 2rem">
+
+  <%= label_tag 'Commentaire' %><br/>
+  <%= text_area_tag 'content', @comment.content %>
+  <br /> <br />
+  <%= submit_tag "Modifier" %>
+ </div>
+  <br /> <br /> 
+ <button type="button" class="btn btn-outline-secondary">
+ 	<%= link_to "Detruire le com' ?!", comment_path(@comment.id), method: :delete %>
+ </button>
+<% end %>

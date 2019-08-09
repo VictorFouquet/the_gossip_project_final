@@ -1,0 +1,20 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+	<center>
+	<body>
+	<div class="card" style="width: 40%; padding: 5%; margin-top: 2rem">
+		<h4><%= @user.first_name + " " + @user.last_name %></h4>
+			<p>
+				Description :<br/>
+				<%= @user.description %>
+				<br><br>
+				Email : <%= @user.email %>
+				<br/>
+				Ville : <%= link_to @user.city.name, city_path(@user.city.id) %>
+				<br/>
+				Age : <%= @user.age %> ans 
+			</p>
+		</div>
+	</body>
+	</center>

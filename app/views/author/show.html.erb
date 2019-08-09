@@ -1,0 +1,12 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+	<center>
+	<br>
+	<h4><%= User.find(params[:author_id]).first_name %> <%= User.find(params[:author_id]).last_name %></h4>
+		<p>
+			<%= User.find(params[:author_id]).description %>
+			<br><br>
+			Email : <%= User.find(params[:author_id]).email %>
+		</p>
+	</center>

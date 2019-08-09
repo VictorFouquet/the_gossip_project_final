@@ -1,0 +1,80 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<body>
+
+
+<% if alert == "success" %>
+  <div class="alert alert-success" role="alert">
+      <p>Ton gossip a bien été enregistré!</p>
+  </div>
+<% elsif alert == "destroy" %>
+	<div class="alert alert-success" role="alert">
+      <p>Le gossip a bien été effacé!.</p>
+  </div>
+<% elsif alert == "comment_success" %>
+	<div class="alert alert-success" role="alert">
+      <p>Ton commentaire à bien été enregistré!</p>
+  </div>
+<% elsif alert == "success_user_create" %>
+  <div class="alert alert-success" role="alert">
+      <p>Ton inscription à bien été enregistrée!</p>
+  </div> 	
+<% end %>
+
+<br>
+<div class="card" style="width: 70%; padding: 5%">
+  <h2 style="margin-bottom: 2rem">Bienvenue sur The Gossip Project!</h2>
+
+  <br/>
+  <center>
+    <%= image_tag('rumors.jpg', width: '90%') %><br>
+  </center>
+  <br><h3 style="margin-top: 2rem">Voici les potins !</h3>
+
+  <%= link_to "(...et pour en créer un nouveau, c'est par là !)", new_gossip_path %><br/>
+
+  <br><h3>🙈 🙉 🙊‍</h3><br>
+  <center>
+  <div class="card" style="width: 90%; margin-top: 2rem; padding-top: 2rem; background-color: #e8f4f8">
+    <center>
+    <% @gossips.each do |gossip| %>
+
+      <div class="card" style="width: 90%;">
+        <div class="card-body">
+          <h5 class="card-title"><b>"<%= gossip.title.capitalize %>"</b></h5>
+          <p class="card-text"><b>Auteur :</b> <%= gossip.user.first_name %></br> 
+          <%= gossip.comments.length %> commentaire(s)<br>
+          <%= gossip.likes.length %> like(s) 
+          <% checker = nil %>
+          <% current_like = nil %>
+          <% unless current_user == nil %>
+             / <% likes = gossip.likes %>
+            <% likes.each do |like| %>
+              <% checker = current_user.likes.include? like %>
+              <% if checker == true%>
+                <% current_like = like.id %>
+                <% break %>
+              <% end %>
+            <% end %>
+            <% unless checker %>
+              <%= link_to "Liker", like_index_path(:gossip => gossip), :method => :post %>
+            <% else %>
+              <%= link_to "Unliker", like_path(current_like), method: :delete %>
+            <% end %> 
+            <br/><%= link_to "Lire le gossip", gossip_path(gossip.id) %> 
+          <% end %>
+          <br/><br/>
+          </p>
+        </div>
+      </div>
+      <br>
+    
+  <% end %>
+  </center>
+  </div>
+</center>
+</div>
+</body>
+</center>

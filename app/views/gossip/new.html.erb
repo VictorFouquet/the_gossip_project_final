@@ -1,0 +1,31 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+
+<center>
+
+</center>
+
+<body><center>
+	<% if @gossip.errors.any? %>
+		<div class="alert alert-danger" role="alert">
+		 	Erreur lors de la création du Gossip, merci de réessayer en remplissant chaque champ!
+		</div>
+<% end %>
+	<div class="card" style="width: 40%; padding: 5%; margin-top: 2rem">
+			<%= form_tag url_for(action: "create"), method: "post" do %>
+				<div style="width: 90%">
+			  <%= label_tag 'Titre' %><br/>
+			  <%= text_field_tag 'title' %>
+			  <br /> <br />
+
+			  <%= label_tag 'Gossip' %><br/>
+			  <%= text_area_tag 'content' %>
+				</div>
+			  <br /> <br />
+
+  			<%= submit_tag "Enregistrer" %>
+ 
+			<% end %>
+	</div>
+</body></center>

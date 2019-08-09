@@ -1,0 +1,87 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<body style="background-color: lightblue;">
+
+<br>
+<% if alert == "success" %>
+  <div class="alert alert-success" role="alert">
+    <p>Ton commentaire a bien été enregistré!</p>
+  </div>
+<% elsif alert == "comment_destroy" %>
+  <div class="alert alert-success" role="alert">
+      <p>Ton commentaire a bien été supprimé!</p>
+  </div>
+<% end %>
+
+  <div class="card" style="width: 80%; margin-bottom: 5rem">
+    <div class="card-body">
+      <h3 class="card-title"><b><%= @gossip.title.capitalize %></b></h3>
+       <div class="card", style="width: 80%; padding: 5%; margin-top: 2rem; margin-bottom: 5rem; background-color: #e8f4f8"><center>
+          <div class="card" style="width: 90%; padding: 5%; margin-bottom: 2rem">
+            <p class="card-text">
+              "<%= @gossip.content %>"
+            </p></center>
+
+        
+          <br/><br/>
+        
+          <%= link_to @gossip.user.first_name, user_path(@gossip.user.id) %> de <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id) %>
+        
+          <br><br>
+        
+          <small, style="margin-bottom: 1rem"><%= @gossip.date.strftime("Créé le %d/%m/%Y") %></small>
+
+          
+        
+          <% if current_user.id == @gossip.user.id %>
+            <br/><br/>
+            <button type="button" class="btn btn-light"><%= link_to "Editer le gossip", edit_gossip_path(@gossip.id) %> </button>
+            <button type="button" class="btn btn-light"><%= link_to "Detruire le gossip", gossip_path(@gossip.id), method: :delete %>
+            </button>
+            <br/>
+          <% end %>
+          
+          <br/><br/>
+      </div>
+      <h4>Commentaires :</h4>
+      
+      <br> 
+      <div class="card" style="width: 70%; padding: 5%; background-color: #e8f4f8"><center>
+      <% @comments.each do |comment| %>
+        <div class="card" style="width: 90%;">
+          <div class="card-body">
+            <h5 class="card-title", style="margin-left: 1rem">
+              <%= link_to comment.user.first_name + " " + comment.user.last_name + " :", user_path(comment.user.id) %>
+            </h5>
+            <p class="card-text" >
+            <%= comment.content %></br>
+            <small><%= comment.date.strftime("Créé le %d/%m/%Y") %></small> <br/>
+            <% if comment.user == current_user%>
+              <%= link_to "Editer le commentaire", edit_comment_path(comment.id) %>
+            <% end %>
+            </p>
+          </div>
+        </div>
+        <br>
+      <% end %>
+ 
+      <%= form_tag url_for(controller: 'comment', action: 'create', method: 'post') do %>
+        <%= label_tag 'Lache ton com\'!' %><br/>
+        <%= text_area_tag 'comment' %>
+        <%= hidden_field_tag 'gossip_id', @gossip.id %>
+        
+        <br /> <br />
+        
+        <%= submit_tag "Envoyer" %><br/>
+      
+      </div>
+      </center>
+    </div>
+    <% end %>
+  </div>  
+
+</body>
+</center>
+ 

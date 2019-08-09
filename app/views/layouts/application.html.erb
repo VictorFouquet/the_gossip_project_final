@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheGossipProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+
+<center>
+  <body style="background-color: lightblue;">
+
+    
+ <nav class="navbar navbar-light bg-light ml-auto">
+  <span class="navbar-brand h1">The Gossip Project</span>
+  <a class="navbar-brand"> <%= link_to "Accueil", root_path %> </a>
+  <a class="navbar-brand"> <%= link_to "Team", team_path %> </a>
+  <a class="navbar-brand"> <%= link_to "Contact", contact_path %> </a>
+  <% if session[:user_id] == nil %>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Connexion/Inscription
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item"> <%= link_to "Inscription", new_user_path %></a>
+        <a class="dropdown-item"> <%= link_to "Connexion", new_session_path %></a>
+      </div>
+    </div>
+  <% else %>
+    <button type="button" class="btn btn-outline-secondary"><%= link_to "Deconnexion", session_path(session[:user_id]), method: :delete %></button>
+  <% end %>
+  </nav> 
+    <%= yield %>
+  </body>
+</center>
+</html>

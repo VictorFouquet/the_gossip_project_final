@@ -1,0 +1,40 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+<body><center>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+  Erreur lors de la création du profil, merci de réessayer en remplissant chaque champ! Le mot de passe doit contenir entre 6 et 30 caractères!
+</div>
+<% end %>
+<div class="card" style="width: 25rem; padding : 2rem">
+<%= form_tag url_for(action: "create"), method: "post" do %>
+
+  <%= label_tag 'Prénom' %>  : <br>
+  <%= text_field_tag 'first_name' %>
+  <br /> <br />
+  <%= label_tag 'Nom' %>  : <br>
+  <%= text_field_tag 'last_name' %>
+  <br /> <br />
+  <%= label_tag 'Age' %>  : <br>
+  <%= text_field_tag 'age' %>
+  <br /> <br />
+  <%= label_tag 'Ville' %>  : <br>
+  <%= text_field_tag 'city' %>
+  <br /> <br />
+  <%= label_tag 'Email' %>  : <br>
+  <%= text_field_tag 'email' %>
+  <br /> <br />
+  <%= label_tag 'Password' %>  : <br>
+  <%= text_field_tag 'password' %>
+  <br /> <br />
+  <%= label_tag 'Description :' %><br/>
+  <%= text_area_tag 'description' %>
+  <br /> <br />
+  <%= submit_tag "Valider" %>
+ 
+<% end %>
+</div>
+</body></center>
