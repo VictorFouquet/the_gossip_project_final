@@ -9,8 +9,6 @@
 				Description :<br/>
 				<%= @user.description %>
 				<br><br>
-				Email : <%= @user.email %>
-				<br/>
 				Ville : <%= link_to @user.city.name, city_path(@user.city.id) %>
 				<br/>
 				Age : <%= @user.age %> ans 
