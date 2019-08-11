@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
 	resources :comment
 
-	resources :user
+	resources :user do
+		resources :private_message
+	end
 
 	resources :city
 	

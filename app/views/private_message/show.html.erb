@@ -1,0 +1,60 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+<body>
+      <div class="card", style="width: 70%; margin: 2%; padding: 1%; background-color: #e8f4f8">
+        <div class="card-body">
+        	<div class="card", style="width: 90%; margin: 2%; padding: 3%">
+        		<h3>Conversation :</h3>
+          </div>
+            <div class="card", style="width: 90%;">
+              <div class="card", style="background-color: #e8f4f8; margin: 2%; padding: 2%" >
+                <%= form_tag url_for(action: 'create', method: 'post') do %>
+                  <%= label_tag 'Nouveau message :' %><br/>
+                  <%= text_area_tag 'content' %>
+                  <%= hidden_field_tag 'recipient_id', @recipient.id %>
+                  
+                  <br /> <br />
+                  
+                  <%= submit_tag "Envoyer" %><br/>
+                <% end %>
+              </div>
+          	 <% @messages.each do |message| %>
+              <% if message.sender == current_user %>
+       
+                  <div class="card", style="background-color: #e8f4f8; margin-top: 3%; margin-right:3%; margin-bottom: 3%; margin-left: 30%" >
+                    <div class="card-body", style="padding: 2%">
+                      <p class="card-text">
+                      	<%= message.content %><br/>
+                        <small><%= message.date%></small>
+                      	 <br>
+                      </p>
+                    </div>
+                  </div>
+               <br/><br/>
+
+              <% else %>
+               
+             
+                  <div class="card", style="margin-top: 3%; margin-right:30%; margin-bottom: 3%; margin-left: 3%">
+                    <div class="card-body">
+                      <p class="card-text">
+                        <%= message.sender.first_name + " " + message.sender.last_name + " :" %> <br/>
+                        <%= message.content %><br/>
+                        <small><%= message.date%></small>
+                         <br>
+                      </p>
+                    </div>
+                  </div>
+                <br/><br/>
+              
+              <% end %>
+            
+            <% end %>
+          </div>
+        </div>
+  </div>
+  <% else %>
+</body>

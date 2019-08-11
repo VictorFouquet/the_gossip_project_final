@@ -14,6 +14,8 @@
 				Ville : <%= link_to @user.city.name, city_path(@user.city.id) %>
 				<br/>
 				Age : <%= @user.age %> ans 
+				<br/>
+				<%= link_to "Envoyer un message", user_private_message_path(user_id: current_user.id, id: @user.id) %>
 			</p>
 		</div>
 	</body>

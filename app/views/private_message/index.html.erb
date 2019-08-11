@@ -1,0 +1,21 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+<body>
+  <div class="card" style="width: 70%; padding: 5%; margin-top: 2rem;margin-bottom: 5rem">
+  <h1>Messages</h1>
+    <div class="card" style="width: 90%; padding: 5%; margin: 5%; background-color: #e8f4f8">
+      <% @user_conversations.each do |user_conversation| %>
+        <div class="card" style="width: 90%; padding: 3%%; margin: 5%">
+          <div class="card-body">
+              <%= link_to User.find_by(email: user_conversation).first_name + " " + User.find_by(email: user_conversation).last_name, user_private_message_path(user_id: current_user.id, id:User.find_by(email: user_conversation).id) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</center>
+

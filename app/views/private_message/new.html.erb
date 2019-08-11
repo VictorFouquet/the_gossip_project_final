@@ -1,0 +1,21 @@
+<head>
+<title>The Gossip Project</title>
+</head>
+<center>
+<br>
+<body>
+	<div>
+		Nouveau message à <%= @recipient.first_name %> <%= @recipient.last_name %>
+	</div>
+	<br/>
+	<div>
+    <%= form_tag url_for(action: 'create', method: 'post') do %>
+    <%= text_area_tag 'content' %>
+    <%= hidden_field_tag 'recipient_id', @recipient.id %>
+    
+    <br /> <br />
+    
+    <%= submit_tag "Envoyer" %><br/>
+    <% end %>
+	</div>
+</body>

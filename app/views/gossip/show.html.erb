@@ -19,21 +19,16 @@
     <div class="card-body">
       <h3 class="card-title"><b><%= @gossip.title.capitalize %></b></h3>
        <div class="card", style="width: 80%; padding: 5%; margin-top: 2rem; margin-bottom: 5rem; background-color: #e8f4f8"><center>
+         <h4><%= link_to @gossip.user.first_name + " " + @gossip.user.last_name, user_path(@gossip.user.id) %></h4> 
+          <br><br>
           <div class="card" style="width: 90%; padding: 5%; margin-bottom: 1rem">
             <p class="card-text">
               "<%= @gossip.content %>"
             </p></center>
-
-        
           <br/><br/>
-        
-          <%= link_to @gossip.user.first_name, user_path(@gossip.user.id) %> de <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id) %>
-        
+            <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id) %>
           <br><br>
-        
           <small, style="margin-bottom: 1rem"><%= @gossip.date.strftime("Créé le %d/%m/%Y") %></small>
-
-          
         
           <% if current_user.id == @gossip.user.id %>
             <br/><br/>
